@@ -1,0 +1,25 @@
+.post {
+    margin-bottom: 2rem;
+  }
+  
+  .author {
+    font-size: 0.8rem;
+    color: #666;
+  }
+  
+  .date {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 1rem;
+  }
+  
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .content {
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
