@@ -1,23 +1,4 @@
-/* import { useState } from "react";
-
-export default function Home(data: { [key: string]: any }) {
-  const [message, setMessage] = useState("");
-
-  const handleClick = async () => {
-    const res = await fetch(`http://localhost:3001/hello`);
-    const data = await res.json();
-    setMessage(data.message);
-  };
-
-  return (
-    <div>
-      <h1>Next.js + Nest.js</h1>
-      <button onClick={handleClick}>Say Hello</button>
-      <p>{message}</p>
-    </div>
-  );
-}*/
-import Head from 'next/head';
+/*import Head from 'next/head';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { Post } from '@/post.interface';
@@ -48,7 +29,7 @@ export default function Home() {
       <div className="post-list">
         {posts.map((post) => (
           <div key={post.id} className="post-card">
-            <Link href={`/posts/${post.id}`}>
+            <Link href={`/blog/${post.id}`}>
               
                 
                 <div className="content">
@@ -66,5 +47,16 @@ export default function Home() {
     </main>
     
 </div>
+  );
+}
+*/
+import PostList from "./postlist";
+
+export default function Home() {
+  return (
+    <div>
+      <h1>Blog</h1>
+      <PostList />
+    </div>
   );
 }
