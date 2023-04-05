@@ -16,6 +16,7 @@ interface Props {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const res = await fetch(`http://localhost:3001/blog/${context.params?.id}`);
   const post = await res.json();
+  console.log(context.params?.id);
   return {
     props: {
       post,

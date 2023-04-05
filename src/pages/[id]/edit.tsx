@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Layout from "../layout";
 import { GetServerSideProps } from "next";
+import styles from "./EditPostPage.module.css";
 
 interface Post {
   id: number;
@@ -67,24 +68,26 @@ const EditPostPage: React.FC<Props> = ({ post }) => {
 
   return (
     <Layout>
-      <h1>Edit Post</h1>
-      <form onSubmit={handleUpdate}>
-        <label htmlFor="title">Title:</label>
+      <h1 className={styles.title}>Edit Post</h1>
+      <form onSubmit={handleUpdate} className="form">
+        <label htmlFor="title" className={styles.label}>Title:</label>
         <input
           type="text"
           name="title"
           value={formData.title}
           onChange={handleChange}
+          className={styles.input}
         />
         <br />
-        <label htmlFor="content">Content:</label>
+        <label htmlFor="content" className={styles.label}>Content:</label>
         <textarea
           name="content"
           value={formData.content}
           onChange={handleChange}
+          className={styles.textarea}
         ></textarea>
         <br />
-        <button type="submit">Update</button>
+        <button type="submit" className={styles.button}>Update</button>
       </form>
     </Layout>
   );

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import styles from "./PostList.module.css";
 
 const PostList = () => {
-    const [posts, setPosts] = useState([]);
-    const router = useRouter();
-    
+  const [posts, setPosts] = useState([]);
+  const router = useRouter();
+
   useEffect(() => {
     fetch("http://localhost:3001/blog")
       .then((res) => res.json())
@@ -25,16 +26,14 @@ const PostList = () => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       {posts.map((post:any) => (
-        <div key={post.id}>
-          <h2>{post.title}</h2>
-          <p>{post.content}</p>
-          <Link href={`/${post.id}`}>
-            Read more
-          </Link>
-          <button onClick={() => handleEdit(post.id)}>Edit</button>
-          <button onClick={() => handleDelete(post.id)}>Delete</button>
+        <div key={post.id} className={styles.post}>
+          <h2 className={styles.title}>{post.title}</h2>
+          <p className={styles.content}>{post.content}</p>
+          <Link legacyBehavior href={`/${post.id}`}><a className={styles.readmore}>Read more</a></Link>
+          <button className={styles.button} onClick={() => handleEdit(post.id)}>Edit</button>
+          <button className={styles.button} onClick={() => handleDelete(post.id)}>Delete</button>
         </div>
       ))}
     </div>
