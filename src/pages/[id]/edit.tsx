@@ -5,7 +5,7 @@ import { GetServerSideProps } from "next";
 import styles from "./EditPostPage.module.css";
 
 interface Post {
-  id: number;
+  _id: number;
   title: string;
   content: string;
 }
@@ -38,7 +38,7 @@ const EditPostPage: React.FC<Props> = ({ post }) => {
     e.preventDefault();
     try {
       const res = await fetch(
-        `http://localhost:3001/blog/${currentPost?.id}`,
+        `http://localhost:3001/blog/${currentPost?._id}`,
         {
           method: "PUT",
           headers: {

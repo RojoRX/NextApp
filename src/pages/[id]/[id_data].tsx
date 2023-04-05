@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 
 interface Post {
-  id: number;
+  _id: string;
   title: string;
   content: string;
 }
@@ -14,9 +14,9 @@ interface Props {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch(`http://localhost:3001/blog/${context.params?.id}`);
+  const res = await fetch(`http://localhost:3001/blog/${context.params?._id}`);
   const post = await res.json();
-  console.log(context.params?.id);
+  console.log(context.params?._id);
   return {
     props: {
       post,
@@ -33,7 +33,7 @@ const PostPage: React.FC<Props> = ({ post }) => {
   }, [post]);
 
   const handleEdit = () => {
-    router.push(`/${currentPost?.id}/edit`);
+    router.push(`/${currentPost?._id}/edit`);
   };
 
   if (!currentPost) {
