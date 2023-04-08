@@ -17,6 +17,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const res = await fetch(`http://localhost:3001/blog/${context.params?._id}`);
   const post = await res.json();
   console.log(context.params?._id);
+  console.log("Pasaste por ID")
   return {
     props: {
       post,

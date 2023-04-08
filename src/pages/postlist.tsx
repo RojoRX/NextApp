@@ -8,7 +8,12 @@ const PostList = () => {
   const router = useRouter();
 
   useEffect(() => {
-    fetch("http://localhost:3001/blog")
+    const token = localStorage.getItem("token");
+    fetch("http://localhost:3001/blog", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setPosts(data);
@@ -18,7 +23,14 @@ const PostList = () => {
   }, []);
 
   const handleDelete = (id: string) => {
-    fetch(`http://localhost:3001/blog/${id}`, { method: "DELETE" })
+    const token = localStorage.getItem("token");
+    
+    fetch(`http://localhost:3001/blog/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
       .then(() => {
         const newPosts = posts.filter((post: any) => post._id !== id);
         setPosts(newPosts);
@@ -28,6 +40,7 @@ const PostList = () => {
 
   const handleEdit = (id: string) => {
     router.push(`/${id}/edit`);
+
   };
 
   return (

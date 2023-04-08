@@ -22,12 +22,10 @@ const CreatePostForm = () => {
       alert("Please fill in the required fields");
       return;
     }
-/*
-    if (!formData.image) {
-      alert("Please select an image");
-      return;
-    }*/
 
+    const token = localStorage.getItem('token');
+    const headers = new Headers();
+    headers.append('Authorization', `Bearer ${token}`);
     try {
       const data = new FormData();
       data.append("title", formData.title);
@@ -39,6 +37,7 @@ const CreatePostForm = () => {
       const res = await fetch("http://localhost:3001/blog", {
         method: "POST",
         body: data,
+        headers: headers,
       });
       const json = await res.json();
       router.push(`http://localhost:3000/`);
