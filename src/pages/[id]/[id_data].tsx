@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+/*import React, { useEffect, useState } from "react";
 import Layout from "../layout";
 import { useRouter } from "next/router";
 import { GetStaticProps, GetStaticPaths } from "next";
@@ -69,3 +69,4 @@ const PostPage: React.FC<Props> = ({ post }) => {
 };
 
 export default PostPage;
+*/
