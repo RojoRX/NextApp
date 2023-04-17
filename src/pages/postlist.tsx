@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./PostList.module.css";
 import apiConfig from "@/config/apiConfig";
+import Image from 'next/image'
 
 const { apiUrl } = apiConfig;
 
@@ -53,7 +54,10 @@ const PostList = () => {
           <h2 className="text-white">{post.title}</h2>
           <p className={styles.content}>{post.content}</p>
           {post.image && (
-            <img className={styles.image} src={post.image} alt={post.title} />
+            <Image className={styles.image} src={post.image} alt={post.title} width={300}
+            height={300} />
+
+            
 
           )}
           <br/>
