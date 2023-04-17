@@ -1,27 +1,39 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../layout";
 import { useRouter } from "next/router";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
+import apiConfig from "@/config/apiConfig";
+
+const { apiUrl } = apiConfig;
 
 interface Post {
   _id: string;
   title: string;
   content: string;
+  slug: string;
 }
 
 interface Props {
   post: Post;
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch(`http://localhost:3001/blog/${context.params?._id}`);
-  const post = await res.json();
-  console.log(context.params?._id);
-  console.log("Pasaste por ID")
+export const getStaticPaths: GetStaticPaths = async () => {
+  const res = await fetch(`${apiUrl}/blog`);
+  const posts: Post[] = await res.json();
+
+  const paths = posts.map((post) => ({
+    params: { slug: post.slug },
+  }));
+
+  return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const res = await fetch(`${apiUrl}/blog?slug=${params?.slug}`);
+  const post: Post = await res.json();
+
   return {
-    props: {
-      post,
-    },
+    props: { post },
   };
 };
 
