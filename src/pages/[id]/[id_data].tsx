@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../layout";
 import { useRouter } from "next/router";
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
+import { GetStaticProps, GetStaticPaths } from "next";
 import apiConfig from "@/config/apiConfig";
 
 const { apiUrl } = apiConfig;
