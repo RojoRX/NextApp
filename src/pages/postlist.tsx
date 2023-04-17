@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import styles from "./PostList.module.css";
 import apiConfig from "@/config/apiConfig";
 import Image from 'next/image'
 
@@ -52,9 +50,9 @@ const PostList = () => {
       {posts.map((post: any, index: number) => (
         <div key={index} className="shadow-lg m-5 p-3 text-center col-6-auto">
           <h2 className="text-white">{post.title}</h2>
-          <p className={styles.content}>{post.content}</p>
+          <p>{post.content}</p>
           {post.image && (
-            <Image className={styles.image} src={post.image} alt={post.title} width={300}
+            <Image src={post.image} alt={post.title} width={300}
             height={300} />
 
             
