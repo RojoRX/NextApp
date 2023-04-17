@@ -18,13 +18,7 @@ interface Props {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const token = localStorage.getItem("token");
-
-  const res = await fetch(`${apiUrl}/blog`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const res = await fetch(`${apiUrl}/blog`);
   const posts: Post[] = await res.json();
 
   const paths = posts.map((post) => ({
