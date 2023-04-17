@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import apiConfig from "@/config/apiConfig";
 
+const { apiUrl } = apiConfig;
 interface FormData {
   title: string;
   content: string;
@@ -22,7 +24,7 @@ const EditPostForm = () => {
       const headers = new Headers();
       headers.append('Authorization', `Bearer ${token}`);
       try {
-        const res = await fetch(`http://localhost:3001/blog/${id}`, {
+        const res = await fetch(`${apiUrl}/blog/${id}`, {
           headers: headers,
         });
         const data = await res.json();
@@ -58,7 +60,7 @@ const EditPostForm = () => {
         data.append("image", formData.image);
       }
 
-      const res = await fetch(`http://localhost:3001/blog/${id}`, {
+      const res = await fetch(`${apiUrl}/blog/${id}`, {
         method: "PUT",
         body: data,
         headers: headers,
@@ -90,29 +92,35 @@ const EditPostForm = () => {
   };
 
   return (
-    <form onSubmit={handleEdit} encType="multipart/form-data">
-      <label htmlFor="title">Title:</label>
-      <input
-        type="text"
-        name="title"
-        value={formData.title}
-        onChange={handleChange}
-        required
-      />
-      <br />
-      <label htmlFor="content">Content:</label>
-      <textarea
-        name="content"
-        value={formData.content}
-        onChange={handleChange}
-        required
-      ></textarea>
-      <br />
-      <label htmlFor="image">Image:</label>
-      <input type="file" name="image" onChange={handleFileChange} />
-      <br />
-      <button type="submit">Edit</button>
-    </form>
+    <div className='container mt-5 col-6 shadow-lg p-4'>
+      <form onSubmit={handleEdit} encType="multipart/form-data">
+        <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label">Title</label>
+          
+          <input type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            required className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label">Content</label>
+          <br/>
+          <textarea
+            name="content"
+            value={formData.content}
+            onChange={handleChange}
+            required
+          ></textarea>
+        </div>
+        <label htmlFor="image">Image:</label>
+        <br/>
+        <input type="file" name="image" onChange={handleFileChange}/>
+        <br/>
+        <button className="btn btn-success mt-3" type="submit">Edit</button>
+      </form>
+    </div>
   );
 };
 

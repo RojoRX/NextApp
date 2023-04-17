@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./PostList.module.css";
+import apiConfig from "@/config/apiConfig";
+
+const { apiUrl } = apiConfig;
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
@@ -9,7 +12,7 @@ const PostList = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("http://localhost:3001/blog", {
+    fetch(`${apiUrl}/blog`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -25,7 +28,7 @@ const PostList = () => {
   const handleDelete = (id: string) => {
     const token = localStorage.getItem("token");
     
-    fetch(`http://localhost:3001/blog/${id}`, {
+    fetch(`${apiUrl}/blog/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -44,30 +47,31 @@ const PostList = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className="container p-2">
       {posts.map((post: any, index: number) => (
-        <div key={index} className={styles.post}>
-          <h2 className={styles.title}>{post.title}</h2>
+        <div key={index} className="shadow-lg m-5 p-3 text-center col-6-auto">
+          <h2 className="text-white">{post.title}</h2>
           <p className={styles.content}>{post.content}</p>
           {post.image && (
             <img className={styles.image} src={post.image} alt={post.title} />
 
           )}
-          <Link legacyBehavior href={`/${post.id}`}>
-            <a className={styles.readmore}>Read more</a>
-          </Link>
+          <br/>
+          <div className="m-2 p-2">
           <button
-            className={styles.button}
+            type="button" className="btn btn-lg btn-primary"
             onClick={() => handleEdit(post._id)}
           >
             Edit
           </button>
           <button
-            className={styles.button}
+            type="button" className="btn btn-lg btn-secondary"
             onClick={() => handleDelete(post._id)}
           >
             Delete
           </button>
+          </div>
+       
         </div>
       ))}
     </div>

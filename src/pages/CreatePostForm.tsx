@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
+import apiConfig from "@/config/apiConfig";
+const { apiUrl } = apiConfig;
 
 interface FormData {
   title: string;
@@ -34,7 +36,7 @@ const CreatePostForm = () => {
         data.append("image", formData.image);
       }
 
-      const res = await fetch("http://localhost:3001/blog", {
+      const res = await fetch(`${apiUrl}/blog`, {
         method: "POST",
         body: data,
         headers: headers,
@@ -66,29 +68,37 @@ const CreatePostForm = () => {
   };
 
   return (
-    <form onSubmit={handleCreate} encType="multipart/form-data">
-      <label htmlFor="title">Title:</label>
-      <input
-        type="text"
-        name="title"
-        value={formData.title}
-        onChange={handleChange}
-        required
-      />
-      <br />
-      <label htmlFor="content">Content:</label>
-      <textarea
-        name="content"
-        value={formData.content}
-        onChange={handleChange}
-        required
-      ></textarea>
-      <br />
-      <label htmlFor="image">Image:</label>
-      <input type="file" name="image" onChange={handleFileChange} />
-      <br />
-      <button type="submit">Create</button>
-    </form>
+    <div className='container mt-5 col-6 shadow-lg p-4'>
+      <form onSubmit={handleCreate} encType="multipart/form-data">
+        <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label">Title</label>
+
+          <input type="text"
+
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+            className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="exampleInputEmail1" className="form-label">Content</label>
+          <br />
+          <textarea
+            name="content"
+            value={formData.content}
+            onChange={handleChange}
+            required
+          ></textarea>
+        </div>
+        <label htmlFor="image">Image:</label>
+        <br />
+        <input type="file" name="image" onChange={handleFileChange} />
+        <br />
+        <button className="btn btn-success mt-3" type="submit">Crear</button>
+      </form>
+    </div>
   );
 };
 

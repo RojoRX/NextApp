@@ -1,31 +1,40 @@
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+
 import PostList from './postlist';
-import LoginForm from './loginpage';
 import Link from 'next/link';
+import Layout from './layout';
 
 export default function Home() {
   const [authenticated, setAuthenticated] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token && token !== 'undefined') {
+    if (token) {
       setAuthenticated(true);
+    } else {
+      router.push('/loginpage');
     }
   }, []);
+
+  const handleAuthenticated = () => {
+    setAuthenticated(true);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     setAuthenticated(false);
+    router.push('/loginpage');
   };
 
   return (
     <div>
-      {!authenticated ? (
-        <LoginForm onAuthenticated={() => setAuthenticated(true)} />
-      ) : (
+      {authenticated && (
         <>
-          <h1>Blog</h1>
-          <PostList />
+        <Layout/>
+          
+          <PostList/>
           <hr />
           <Link legacyBehavior href="/create-post">
             <a>Create Post</a>
