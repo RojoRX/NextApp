@@ -39,12 +39,12 @@ const PostList = () => {
       })
       .catch((error) => console.error(error));
   };
-
+/*
   const handleEdit = (id: string) => {
     router.push(`/${id}/edit`);
 
   };
-
+*/
   return (
     <div className="container p-2">
       {posts.map((post: any, index: number) => (
@@ -62,7 +62,7 @@ const PostList = () => {
           <div className="m-2 p-2">
           <button
             type="button" className="btn btn-lg btn-primary"
-            onClick={() => handleEdit(post._id)}
+            /*onClick={() => handleEdit(post._id)}*/
           >
             Edit
           </button>
