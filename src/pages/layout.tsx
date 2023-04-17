@@ -9,27 +9,8 @@ const Layout = ({ children }:any) => {
         </button>
 
         <div className="collapse navbar-collapse d-lg-flex" id="navbarsExample11">
-          <a className="navbar-brand col-lg-3 me-0 text-white fs-2" href="#">Blog Fundation</a>
-          <ul className="navbar-nav col-lg-6 justify-content-lg-center">
-            <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/">Link</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link disabled">Disabled</a>
-            </li>
-            <li className="nav-item dropdown">
-              <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
-              <ul className="dropdown-menu">
-                <li><a className="dropdown-item" href="#">Action</a></li>
-                <li><a className="dropdown-item" href="#">Another action</a></li>
-                <li><a className="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-          </ul>
-         
+          <Link className="navbar-brand col-lg-3 me-0 text-white fs-2" href="#">Blog Fundation</Link>
+          
         </div>
       </div>
     </nav>
