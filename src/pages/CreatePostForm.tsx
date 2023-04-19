@@ -42,7 +42,7 @@ const CreatePostForm = () => {
         headers: headers,
       });
       const json = await res.json();
-      router.push(`http://localhost:3000/`);
+      router.push(`/`);
     } catch (error) {
       console.error(error);
     }
