@@ -41,7 +41,7 @@ const PostList = () => {
   };
 
   const handleEdit = (id: string) => {
-    router.push(`/${id}/edit`);
+    router.push(`/edit?id=${id}`);
 
   };
   return (
